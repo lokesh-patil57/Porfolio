@@ -1,0 +1,411 @@
+/* Theme variables */
+:root {
+  --form-bg: #ffffff;
+  --container-bg: #f8f9fa;
+  --text-color: #333333;
+  --label-color: #555555;
+  --input-bg: #ffffff;
+  --input-border: #ddd;
+  --input-focus: #007bff;
+  --button-bg: #007bff;
+  --button-hover: #0056b3;
+  --error-bg: #ffebee;
+  --error-border: #ef9a9a;
+  --error-text: #c62828;
+  --project-item-bg: #f8f9fa;
+  --heading-color: #333;
+  --add-project-bg: #28a745;
+  --add-project-hover: #218838;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --section-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --primary-color: #007bff;
+  --secondary-color: #6610f2;
+  --primary-hover: #0056b3;
+  --border-color: #dee2e6;
+  --upload-bg: #f8f9fa;
+  --upload-hover-bg: #e9ecef;
+}
+
+[data-theme="dark"] {
+  --form-bg: #2d2d2d;
+  --container-bg: #1a1a1a;
+  --text-color: #ffffff;
+  --label-color: #cccccc;
+  --input-bg: #3d3d3d;
+  --input-border: #404040;
+  --input-focus: #66b0ff;
+  --button-bg: #66b0ff;
+  --button-hover: #99ccff;
+  --error-bg: #4a1f1f;
+  --error-border: #832828;
+  --error-text: #ff9999;
+  --project-item-bg: #2d2d2d;
+  --heading-color: #ffffff;
+  --add-project-bg: #2ea043;
+  --add-project-hover: #3fb950;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --section-bg: #2d2d2d;
+  --card-bg: #333333;
+  --primary-color: #66b0ff;
+  --secondary-color: #845ef7;
+  --primary-hover: #339af0;
+  --border-color: #4a4a4a;
+  --upload-bg: #2d2d2d;
+  --upload-hover-bg: #404040;
+}
+
+/* Base styles */
+.form-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 50px;
+  background: var(--form-bg);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: var(--form-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
+  text-align: center;
+}
+
+label {
+  color: var(--label-color);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  padding: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(102, 176, 255, 0.1);
+}
+
+button {
+  background-color: var(--button-bg);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+.project-item {
+  background: var(--card-bg);
+  padding: 35px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-item:last-child {
+  margin-bottom: 20px;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-header h3 {
+  color: var(--heading-color);
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.add-project-btn {
+  background-color: var(--add-project-bg);
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+}
+
+.add-project-btn:hover {
+  background-color: var(--add-project-hover);
+}
+
+.error-message {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-border);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.file-selected {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 10px;
+  border: 2px dashed var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+  border-color: var(--input-focus);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-container {
+    width: 95%;
+    padding: 30px;
+    margin: 30px auto;
+  }
+
+  .form-section {
+    padding: 25px;
+    margin-bottom: 40px;
+  }
+
+  .form-group {
+    padding: 0;
+    margin-bottom: 25px;
+  }
+
+  .project-item {
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+
+  .contact-fields {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .file-upload {
+    margin: 20px 0;
+  }
+
+  .submit-container {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+}
+
+/* Form Header */
+.form-container h1 {
+  text-align: center;
+  color: var(--heading-color);
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-weight: 700;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 60px;
+  padding: 40px;
+  background: var(--section-bg);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h2 {
+  color: var(--heading-color);
+  font-size: 1.8em;
+  margin-bottom: 35px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+}
+
+.form-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 35px;
+  padding: 0 15px;
+}
+
+.form-group:last-child {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--label-color);
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1em;
+  color: var(--text-color);
+  background: var(--input-bg);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+/* File Upload */
+.file-upload {
+  margin: 30px 0;
+}
+
+.file-upload label {
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.file-upload input[type="file"] {
+  display: none;
+}
+
+/* Submit Button */
+.submit-container {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submit-button:active {
+  transform: translateY(1px);
+}
+
+/* Theme Toggle Position */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Add more theme-aware styles as needed */
+
+/* Additional Spacing Utilities */
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.py-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.py-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* Contact Section Spacing */
+.contact-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}

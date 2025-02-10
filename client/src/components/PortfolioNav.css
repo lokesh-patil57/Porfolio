@@ -1,0 +1,85 @@
+/* Add CSS variables for colors */
+:root {
+  --nav-text: #2c3e50;
+  --nav-text-hover: #007bff;
+  --nav-bg: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] {
+  --nav-text: #ffffff;
+  --nav-text-hover: #63b3ed;
+  --nav-bg: rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.5rem;
+}
+
+.nav-menu li {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--nav-text);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-menu li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--nav-text-hover);
+  transition: width 0.3s ease;
+}
+
+.nav-menu li:hover {
+  color: var(--nav-text-hover);
+}
+
+.nav-menu li:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .nav-menu li {
+    padding: 0.5rem;
+  }
+} 
