@@ -86,7 +86,9 @@ const PortfolioTemplate = () => {
   return (
     <div className="portfolio-template">
       <PortfolioNav />
-      <ThemeToggle isDark={isDarkTheme} onToggle={toggleTheme} />
+      <div className="theme-toggle-wrapper">
+        <ThemeToggle isDark={isDarkTheme} onToggle={toggleTheme} />
+      </div>
       
       {/* Simplified Hero Section */}
       <section className="hero-section">
@@ -109,9 +111,11 @@ const PortfolioTemplate = () => {
             }}
           />
         )}
-        <h1>{portfolio.name}</h1>
-        <h3 className="role">{portfolio.role}</h3>
-        <p className="bio">{portfolio.bio}</p>
+        <div className="profile-info">
+          <h1>{portfolio.name}</h1>
+          <h2 className="role">{portfolio.role || 'Software Developer'}</h2>
+          <p className="bio">{portfolio.bio}</p>
+        </div>
       </header>
 
       <section className="skills-section">
@@ -246,6 +250,15 @@ const PortfolioTemplate = () => {
           </div>
         </section>
       )}
+
+      {/* Add the new floating button */}
+      <button 
+        className="create-portfolio-btn"
+        onClick={() => window.location.href = 'http://localhost:3000'}
+      >
+        <i className="fas fa-plus"></i>
+        Create New Portfolio
+      </button>
     </div>
   );
 }
