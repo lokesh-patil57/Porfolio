@@ -29,6 +29,7 @@ const PortfolioForm = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    role: '',
     email: '',
     bio: '',
     skills: '',
@@ -172,10 +173,14 @@ const PortfolioForm = () => {
         <h1>Create Your Portfolio</h1>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit} className="portfolio-form">
-          <div>
-            <label>Name:</label>
+          <div className="form-group">
+            <label htmlFor="name" className="required">
+              <i className="fas fa-user"></i>
+              Name
+            </label>
             <input
               type="text"
+              id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
@@ -183,10 +188,30 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>Email:</label>
+          <div className="form-group">
+            <label htmlFor="role" className="required">
+              <i className="fas fa-briefcase"></i>
+              Role
+            </label>
+            <input
+              type="text"
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              placeholder="e.g. Full Stack Developer"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email" className="required">
+              <i className="fas fa-envelope"></i>
+              Email
+            </label>
             <input
               type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -194,9 +219,13 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>Bio:</label>
+          <div className="form-group">
+            <label htmlFor="bio" className="required">
+              <i className="fas fa-comment-alt"></i>
+              Bio
+            </label>
             <textarea
+              id="bio"
               name="bio"
               value={formData.bio}
               onChange={handleChange}
@@ -204,10 +233,14 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>Skills (comma-separated):</label>
+          <div className="form-group">
+            <label htmlFor="skills" className="required">
+              <i className="fas fa-code"></i>
+              Skills
+            </label>
             <input
               type="text"
+              id="skills"
               name="skills"
               value={formData.skills}
               onChange={handleChange}
@@ -216,10 +249,14 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>Profile Image:</label>
+          <div className="form-group file-upload">
+            <label htmlFor="profileImage">
+              <i className="fas fa-image"></i>
+              Profile Image
+            </label>
             <input
               type="file"
+              id="profileImage"
               name="profileImage"
               accept="image/*"
               onChange={handleFileChange}
@@ -231,8 +268,11 @@ const PortfolioForm = () => {
             {formData.projects.map((project, index) => (
               <div key={index} className="project-item">
                 <h3>Project {index + 1}</h3>
-                <div>
-                  <label>Title:</label>
+                <div className="form-group">
+                  <label className="required">
+                    <i className="fas fa-project-diagram"></i>
+                    Title
+                  </label>
                   <input
                     type="text"
                     value={project.title}
@@ -240,16 +280,22 @@ const PortfolioForm = () => {
                     required
                   />
                 </div>
-                <div>
-                  <label>Description:</label>
+                <div className="form-group">
+                  <label className="required">
+                    <i className="fas fa-align-left"></i>
+                    Description
+                  </label>
                   <textarea
                     value={project.description}
                     onChange={(e) => handleProjectChange(index, 'description', e.target.value)}
                     required
                   />
                 </div>
-                <div>
-                  <label>Technologies Used:</label>
+                <div className="form-group">
+                  <label className="required">
+                    <i className="fas fa-tools"></i>
+                    Technologies Used
+                  </label>
                   <input
                     type="text"
                     value={project.technologies}
@@ -258,8 +304,11 @@ const PortfolioForm = () => {
                     required
                   />
                 </div>
-                <div>
-                  <label>Project Link:</label>
+                <div className="form-group">
+                  <label>
+                    <i className="fas fa-link"></i>
+                    Project Link
+                  </label>
                   <input
                     type="url"
                     value={project.link}
@@ -267,28 +316,29 @@ const PortfolioForm = () => {
                     placeholder="https://..."
                   />
                 </div>
-                <div>
-                  <label>Project Image:</label>
+                <div className="form-group file-upload">
+                  <label>
+                    <i className="fas fa-image"></i>
+                    Project Image
+                  </label>
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => handleProjectImageChange(index, e.target.files[0])}
                   />
-                  {files.projectImages[index] && (
-                    <p className="file-selected">
-                      Selected: {files.projectImages[index].name}
-                    </p>
-                  )}
                 </div>
               </div>
             ))}
             <button type="button" onClick={handleAddProject} className="add-project-btn">
-              Add Another Project
+              <i className="fas fa-plus"></i> Add Another Project
             </button>
           </div>
 
-          <div>
-            <label>GitHub URL:</label>
+          <div className="form-group">
+            <label>
+              <i className="fab fa-github"></i>
+              GitHub URL
+            </label>
             <input
               type="url"
               name="contact.github"
@@ -298,8 +348,11 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>LinkedIn URL:</label>
+          <div className="form-group">
+            <label>
+              <i className="fab fa-linkedin"></i>
+              LinkedIn URL
+            </label>
             <input
               type="url"
               name="contact.linkedin"
@@ -309,8 +362,11 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <div>
-            <label>Resume:</label>
+          <div className="form-group file-upload">
+            <label>
+              <i className="fas fa-file-pdf"></i>
+              Resume
+            </label>
             <input
               type="file"
               name="resume"
@@ -319,7 +375,9 @@ const PortfolioForm = () => {
             />
           </div>
 
-          <button type="submit">Create Portfolio</button>
+          <button type="submit" className="submit-button">
+            <i className="fas fa-paper-plane"></i> Create Portfolio
+          </button>
         </form>
       </div>
     </div>

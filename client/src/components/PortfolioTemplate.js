@@ -113,6 +113,7 @@ const PortfolioTemplate = () => {
           />
         )}
         <h1>{portfolio.name}</h1>
+        <h3 className="role">{portfolio.role}</h3>
         <p className="bio">{portfolio.bio}</p>
       </header>
 

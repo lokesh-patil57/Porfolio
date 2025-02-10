@@ -1,6 +1,6 @@
 /* Add CSS variables for colors */
 :root {
-  --nav-text: #2c3e50;
+  --nav-text: #000000;
   --nav-text-hover: #007bff;
   --nav-bg: rgba(255, 255, 255, 0.2);
 }
@@ -12,7 +12,7 @@
 }
 
 .portfolio-nav {
-  position: fixed;
+  position: fixed;  
   top: 0;
   left: 0;
   width: 100%;
