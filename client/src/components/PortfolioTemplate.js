@@ -38,7 +38,6 @@ const PortfolioTemplate = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const { portfolioUrl } = useParams();
   const [imageLoading, setImageLoading] = useState({});
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   // Load theme preference from localStorage
   useEffect(() => {
@@ -75,13 +74,11 @@ const PortfolioTemplate = () => {
     fetchPortfolio();
   }, [portfolioUrl]);
 
-  useEffect(() => {
-    if (isResumeOpen) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
+  const handleResumeClick = () => {
+    if (portfolio.resume) {
+      window.open(`http://localhost:5000/uploads/${portfolio.resume}`, '_blank');
     }
-  }, [isResumeOpen]);
+  };
 
   if (loading) return <div className="loading">Loading...</div>;
   if (!portfolio) return <div className="error">Portfolio not found</div>;
@@ -241,33 +238,11 @@ const PortfolioTemplate = () => {
           <div className="resume-container">
             <button 
               className="resume-view-btn"
-              onClick={() => setIsResumeOpen(true)}
+              onClick={handleResumeClick}
             >
               <i className="fas fa-eye"></i>
               <span>View Resume</span>
             </button>
-            {/* Resume Popup */}
-            {isResumeOpen && (
-              <div className="resume-popup-overlay" onClick={() => setIsResumeOpen(false)}>
-                <div className="resume-popup" onClick={e => e.stopPropagation()}>
-                  <button 
-                    className="popup-close"
-                    onClick={() => setIsResumeOpen(false)}
-                    aria-label="Close popup"
-                  >
-                    ×
-                  </button>
-                  <object
-                    data={`http://localhost:5000/uploads/${portfolio.resume}`}
-                    type="application/pdf"
-                    width="100%"
-                    height="100%"
-                  >
-                    <p>Unable to display PDF file. <a href={`http://localhost:5000/uploads/${portfolio.resume}`} target="_blank" rel="noopener noreferrer">Download</a> instead.</p>
-                  </object>
-                </div>
-              </div>
-            )}
           </div>
         </section>
       )}
