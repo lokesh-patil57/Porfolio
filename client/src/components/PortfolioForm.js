@@ -158,12 +158,39 @@ const PortfolioForm = () => {
   const handleProjectImageChange = (index, file) => {
     setFiles(prev => ({
       ...prev,
-      projectImages: [
-        ...prev.projectImages.slice(0, index),
-        file,
-        ...prev.projectImages.slice(index + 1)
-      ]
+      projectImages: prev.projectImages.map((img, i) => 
+        i === index ? file : img
+      )
     }));
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.currentTarget.classList.add('dragover');
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.currentTarget.classList.remove('dragover');
+  };
+
+  const handleDrop = (e, fieldName, index = null) => {
+    e.preventDefault();
+    e.currentTarget.classList.remove('dragover');
+    
+    const droppedFile = e.dataTransfer.files[0];
+    if (!droppedFile) return;
+
+    if (index !== null) {
+      // Handle project image drop
+      handleProjectImageChange(index, droppedFile);
+    } else {
+      // Handle profile image or resume drop
+      setFiles(prev => ({
+        ...prev,
+        [fieldName]: droppedFile
+      }));
+    }
   };
 
   return (
@@ -250,17 +277,27 @@ const PortfolioForm = () => {
           </div>
 
           <div className="form-group file-upload">
-            <label htmlFor="profileImage">
-              <i className="fas fa-image"></i>
-              Profile Image
-            </label>
-            <input
-              type="file"
-              id="profileImage"
-              name="profileImage"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+            <div 
+              className="drop-zone"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={(e) => handleDrop(e, 'profileImage')}
+            >
+              <label htmlFor="profileImage">
+                <i className="fas fa-image"></i>
+                <span>Drop your profile image here or click to browse</span>
+              </label>
+              <input
+                type="file"
+                id="profileImage"
+                name="profileImage"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+              {files.profileImage && (
+                <p className="file-name">{files.profileImage.name}</p>
+              )}
+            </div>
           </div>
 
           <div className="projects-section">
@@ -317,15 +354,30 @@ const PortfolioForm = () => {
                   />
                 </div>
                 <div className="form-group file-upload">
-                  <label>
-                    <i className="fas fa-image"></i>
-                    Project Image
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleProjectImageChange(index, e.target.files[0])}
-                  />
+                  <div 
+                    className="drop-zone"
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={(e) => handleDrop(e, 'projectImage', index)}
+                  >
+                    <label htmlFor={`project-image-${index}`}>
+                      <i className="fas fa-image"></i>
+                      <span>Drop project image here or click to browse</span>
+                    </label>
+                    <input
+                      type="file"
+                      id={`project-image-${index}`}
+                      name={`project-image-${index}`}
+                      accept="image/*"
+                      onChange={(e) => handleProjectImageChange(index, e.target.files[0])}
+                      style={{ display: 'none' }}
+                    />
+                    {files.projectImages[index] && (
+                      <p className="file-name">
+                        Selected: {files.projectImages[index].name}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -363,16 +415,30 @@ const PortfolioForm = () => {
           </div>
 
           <div className="form-group file-upload">
-            <label>
-              <i className="fas fa-file-pdf"></i>
-              Resume
-            </label>
-            <input
-              type="file"
-              name="resume"
-              accept=".pdf,.doc,.docx"
-              onChange={handleFileChange}
-            />
+            <div 
+              className="drop-zone"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={(e) => handleDrop(e, 'resume')}
+            >
+              <label htmlFor="resume-upload">
+                <i className="fas fa-file-pdf"></i>
+                <span>Drop your resume here or click to browse</span>
+              </label>
+              <input
+                type="file"
+                id="resume-upload"
+                name="resume"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+              {files.resume && (
+                <p className="file-name">
+                  Selected: {files.resume.name}
+                </p>
+              )}
+            </div>
           </div>
 
           <button type="submit" className="submit-button">

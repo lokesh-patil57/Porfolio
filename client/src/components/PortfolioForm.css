@@ -57,23 +57,23 @@
 
 /* Base styles */
 .form-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 50px;
+  width: 95%;
+  max-width: 1400px;
+  margin: 80px auto;
+  padding: 80px;
   background: var(--form-bg);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 60px;
   background-color: var(--form-bg);
-  border-radius: 12px;
-  box-shadow: 0 2px 10px var(--shadow-color);
+  border-radius: 15px;
+  box-shadow: 0 2px 15px var(--shadow-color);
 }
 
 h1,
@@ -123,14 +123,14 @@ button:hover {
 
 .project-item {
   background: var(--card-bg);
-  padding: 35px;
-  border-radius: 12px;
-  margin-bottom: 40px;
+  padding: 45px;
+  border-radius: 15px;
+  margin-bottom: 50px;
   border: 1px solid var(--border-color);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .project-item:last-child {
@@ -197,12 +197,26 @@ input[type="file"]:hover {
   border-color: var(--input-focus);
 }
 
-/* Responsive design */
+/* Responsive adjustments */
+@media (max-width: 1440px) {
+  .form-container {
+    padding: 60px;
+  }
+  
+  .container {
+    padding: 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .form-container {
     width: 95%;
     padding: 30px;
     margin: 30px auto;
+  }
+
+  .container {
+    padding: 25px;
   }
 
   .form-section {
@@ -211,13 +225,13 @@ input[type="file"]:hover {
   }
 
   .form-group {
-    padding: 0;
-    margin-bottom: 25px;
+    padding: 0 15px;
+    margin-bottom: 35px;
   }
 
   .project-item {
-    padding: 25px;
-    margin-bottom: 30px;
+    padding: 30px;
+    margin-bottom: 40px;
   }
 
   .contact-fields {
@@ -239,8 +253,8 @@ input[type="file"]:hover {
 .form-container h1 {
   text-align: center;
   color: var(--heading-color);
-  font-size: 2.5em;
-  margin-bottom: 40px;
+  font-size: 3em;
+  margin-bottom: 60px;
   font-weight: 700;
   background: linear-gradient(
     45deg,
@@ -263,8 +277,8 @@ input[type="file"]:hover {
 
 .form-section h2 {
   color: var(--heading-color);
-  font-size: 1.8em;
-  margin-bottom: 35px;
+  font-size: 2.2em;
+  margin-bottom: 45px;
   padding-bottom: 15px;
   border-bottom: 2px solid var(--border-color);
   position: relative;
@@ -282,8 +296,8 @@ input[type="file"]:hover {
 
 /* Form Groups */
 .form-group {
-  margin-bottom: 35px;
-  padding: 0 15px;
+  margin-bottom: 45px;
+  padding: 0 25px;
 }
 
 .form-group:last-child {
@@ -292,19 +306,19 @@ input[type="file"]:hover {
 
 .form-group label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: var(--label-color);
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 12px 15px;
+  padding: 15px 20px;
   border: 2px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1em;
+  border-radius: 10px;
+  font-size: 1.1em;
   color: var(--text-color);
   background: var(--input-bg);
   transition: all 0.3s ease;
@@ -341,14 +355,14 @@ input[type="file"]:hover {
 .submit-button {
   display: block;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 15px 30px;
+  padding: 20px 40px;
   background: var(--primary-color);
   color: white;
   border: none;
   border-radius: 50px;
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -408,4 +422,80 @@ input[type="file"]:hover {
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-bottom: 30px;
+}
+
+/* Drag and Drop Styles */
+.drop-zone {
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--upload-bg);
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.drop-zone label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.drop-zone i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.drop-zone span {
+  font-size: 1rem;
+  color: var(--text-color);
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.file-name {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  word-break: break-all;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: auto;
+  display: inline-block;
+}
+
+/* Enhance hover and dragover states */
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: var(--primary-color);
+  background: var(--upload-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for drag over state */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.drop-zone.dragover {
+  animation: pulse 0.3s ease infinite;
 }
